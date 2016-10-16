@@ -15,7 +15,7 @@ Devise.setup do |config|
 
   # ==> OmniAuth
   config.omniauth :facebook, ENV['facebook_app_id'], ENV['facebook_app_secret'],
-    :scope => 'email', :display => 'popup',
+    :scope => 'email,user_friends,public_profile',
     :info_fields => 'first_name,last_name,email'
 
 end
