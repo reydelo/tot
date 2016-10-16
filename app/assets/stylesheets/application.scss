@@ -1,16 +1,7 @@
-/**
- *  This is a manifest file that'll be compiled into application.css, which will include all the files
- *  listed below.
- *
- *  Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- *  or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- *  You're free to add application-wide styles to this file and they'll appear at the bottom of the
- *  compiled file so the styles you add here take precedence over styles defined in any styles
- *  defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- *  file per style scope.
- *
- */
+/* SCSS Manifest File */
+
+// reset -----------------------------------------------------------------
+@import "normalize";
 
 /**
  *  "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
@@ -19,3 +10,39 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+// application -----------------------------------------------------------------
+
+/**
+ *  base
+ *  for mixins, variables and helpers to aid in building
+ *  the application. no styling of actual elements should
+ *  go in base.
+ */
+@import "application/base/*";
+
+/**
+ *  layouts
+ *  generic site styles. this includes site chrome styles
+ *  such as the header, footer, flash messages, nav, as well
+ *  as common patterns used around the site like forms, type,
+ *  links, etc. the loose idea is that you could take these
+ *  styles and create a similar "layout" but it wouldn't
+ *  include contextual patterns like books, originals, etc.
+ */
+@import "application/layout/*";
+
+/**
+ *	modules
+ *	elements used on multiple pages. As a general guideline
+ *	all common elements should be used on multiple pages.
+ *	elements used on a single page should probably be included
+ *	in a views file for the respective view.
+ */
+@import "application/modules/*";
+
+/**
+ *  View specific modules
+ *  Scoped by body id
+ */
+@import "application/views/*";

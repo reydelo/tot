@@ -1,16 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Thoughts On Time</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title><%= content_for?(:title) ? yield(:title) : "Thoughts on Time" %></title>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+  <meta content="At thoughtsontime.com we offer an entirely unique greeting card service to help you deliver your personalized greeting cards. To the ones you love. On time. Every time. Plan ahead and purchase the timely delivery of your Mother's Day card now" name="description"/>
+  <meta content="birthdays, cards, celebration, Mother's Day, Father's Day, anniversary, just because, special, occasion, [special occasion], sentiment, love, thoughtful, retirement, get well soon, I love you, thank you" name="keywords"/>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+
+  <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"></link>
+  <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400" rel="stylesheet"></link>
+  <link href="//fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"></link>
+  <link href="//fonts.googleapis.com/css?family=Crete+Round:100,200,300,400,400italic" rel="stylesheet"></link>
+
   <%= csrf_meta_tags %>
+
+  <%= yield :head_javascript %>
+
 </head>
 <body>
+
+  <div id="modal-window" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+
+  <header>
+    <%= render 'layouts/navigation_bar' %>
+  </header>
+
+  <!-- TODO: convert to _messages with bootstrap alert styles -->
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-    <%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %>
   <%= yield %>
 
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= yield :footer_javascript %>
+  <% if Rails.env.production? %>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-72629815-2', 'auto');
+  ga('send', 'pageview');
+  </script>
+  <% end %>
 </body>
+
 </html>

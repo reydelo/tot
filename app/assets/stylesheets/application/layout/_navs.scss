@@ -1,0 +1,64 @@
+// primary navigation --------------------------------------------------------
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar-default {
+  background-color: $off-white;
+  border-bottom: solid 2px $pale-grey-two;
+  .navbar-brand {
+    padding: 0 15px;
+    .navbar-logo {
+      height: 50px;
+      width: 50px;
+      padding: 5px
+    }
+  }
+  li {
+    &:last-of-type a:after {
+      content: "";
+    }
+    a {
+      color: $dark-peach !important; // bootstrap styles too specific
+      padding-left: 0px;
+      &:after {
+        content:'|';
+        padding-left: 15px;
+
+      }
+    }
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+  .navbar-header {
+    button.navbar-toggle {
+      color: $dark-peach;
+      border: none;
+      background: none;
+      &:hover {
+        background: none;
+      }
+    }
+  }
+  .navbar-collapse {
+    ul {
+      margin: 0;
+      li {
+        border-bottom: solid 1px $greyish-brown;
+        text-align: center;
+        &:last-of-type {
+          border-bottom: none;
+        }
+        a {
+          color: $greyish-brown !important; // bootstrap styles too specific
+          &:after {
+            content:'';
+          }
+        }
+      }
+    }
+  }
+}
