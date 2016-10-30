@@ -4,8 +4,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :recipients, defaults: { format: 'json' }, only: [:index, :create, :destroy, :update]
-      resources :thought_dates, defaults: { format: 'json' }, only: [:index, :create, :destroy, :update]
+      resources :recipients, defaults: { format: 'json' } do
+        resources :thought_dates, defaults: { format: 'json' }
+      end
+      resources :thought_dates, defaults: { format: 'json' }
     end
   end
 

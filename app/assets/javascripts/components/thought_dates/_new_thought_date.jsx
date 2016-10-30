@@ -3,13 +3,15 @@ var NewThoughtDate= React.createClass({
     let self = this;
     let name = self.refs.name.value;
     let event_date = self.refs.event_date.value;
+    let recipient_id = 4; //XXX
     $.ajax({
       url: '/api/v1/thought_dates',
       type: 'POST',
       data: {
         thought_date: {
           name: name,
-          event_date: event_date
+          event_date: event_date,
+          recipient_id: recipient_id
         }
       },
       success: function(response) {

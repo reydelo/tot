@@ -3,6 +3,10 @@ class Api::V1::RecipientsController < Api::V1::BaseController
     respond_with current_user.recipients
   end
 
+  def show
+    respond_with current_user.recipients.where(id: params[:id]).first
+  end
+
   def update
     @recipient = current_user.recipients.where(id: params[:id]).first
     @recipient.update_attributes(recipient_params)
