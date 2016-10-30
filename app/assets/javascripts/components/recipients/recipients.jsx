@@ -1,13 +1,20 @@
 let Recipients = React.createClass({
   getInitialState() {
     return {
-      recipients: []
+      recipients: [],
+      edit: false
     };
   },
 
   componentDidMount() {
     $.getJSON('/api/v1/recipients.json', (response) => {
       this.setState({ recipients: response })
+    });
+  },
+
+  handleNewToggle: function() {
+    this.setState({
+      edit: !this.state.edit
     });
   },
 
@@ -23,7 +30,7 @@ let Recipients = React.createClass({
         $push: [recipient]
       }
     );
-    this.setState({recipients: recipients});
+    this.setState({recipients: recipients, edit: false});
   },
 
   updateRecipient: function(recipient, data) {
@@ -48,34 +55,21 @@ let Recipients = React.createClass({
 
   render: function() {
     return(
-      <div className='recipients'>
-        <h2 className='title'>Recipients</h2>
-        <br></br>
-        <RecipientForm handleNewRecipient={this.addRecipient} />
-        <br></br>
-        <div className='table-responsive'>
-          <table className='table table-bordered table-condensed'>
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Relationship</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zip Code</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
+      <div>
+        <h1>My Recipients</h1>
+        <div className='add-search-recipient'>
+          <a id='add-new-recipient' className='btn btn-red' onClick={this.handleNewToggle}>Add New Recipient</a>
+          <input type='text' name='search-recipients' placeholder='search your recipients'></input>
+          </div>
+          <RecipientForm handleNewRecipient={this.addRecipient} handleNewToggle={this.handleNewToggle} edit={this.state.edit}/>
+          <div id='recipient-detail'>
+            <div>
               {this.state.recipients.map(function(recipient) {
                 return <Recipient key={recipient.id} recipient={recipient}
                   handleDeleteRecipient={this.deleteRecipient} handleEditRecipient={this.updateRecipient} />
               }.bind(this))}
-            </tbody>
-          </table>
-        </div>
-
+            </div>
+          </div>
       </div>
     )
   }

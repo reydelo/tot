@@ -1,3 +1,68 @@
 // Place all the styles related to the Recipients controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.add-search-recipient {
+  width: 100%;
+  margin: 25px 0;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  button#add-new-recipient {
+    margin-right: 25px;
+  }
+}
+.add-search-recipient {
+  input {
+    flex-grow: 1;
+    min-width: 285px;
+    background-color: $off-white;
+    border-color: $dark-peach;
+    border-style: solid;
+    border-radius: 4px;
+    padding: 6px 12px;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+}
+#recipient-detail {
+  // border-top: 1px solid $greyish-brown;
+  margin: 30px;
+  & > div:first-child {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    #recipient-header {
+      font-weight: 100;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      margin-bottom: 15px;
+      a {
+        margin-left: auto;
+        margin-bottom: auto;
+        margin-top: 15px;
+      }
+      button#new-recipient-thoughtdate {
+        width: 175px;
+      }
+    }
+    .recipient-thought-date {
+      border-top: 1px solid $greyish-brown;
+      margin-bottom: 15px;
+      .recipient-card {
+        display: flex;
+        justify-content: space-between;
+        button {
+          height: 0%;
+          margin-top: auto;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width : 510px) {
+  #recipient-detail {
+    margin: 30px 0 0 0;
+  }
+}
