@@ -3,12 +3,12 @@ let Sidebar = React.createClass({
     console.log(this.props.thoughtDates);
 
     return this.props.thoughtDates.map((thoughtDate) => {
-      // TODO: .strftime("%b %d")
+      formattedDate = moment(thoughtDate.event_date).format("MMM DD");
       return (
         <div key={thoughtDate.id} className='thought-date-list'>
           <a href='#'>
             <div>
-              <h5>{thoughtDate.event_date}</h5>
+              <h5>{formattedDate}</h5>
               <h6>{thoughtDate.recipient.first_name + ' ' + thoughtDate.recipient.last_name + '\'s'} {thoughtDate.name}</h6>
             </div>
           </a>

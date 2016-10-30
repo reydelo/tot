@@ -9,7 +9,11 @@ class Api::V1::ThoughtDatesController < Api::V1::BaseController
       thought_dates = []
       recipients.each do |recip|
         recip.thought_dates.each do |thought_date|
-          td = ThoughtDate.where(id: thought_date.id).includes(:recipient).as_json(include: { recipient: { only: [:first_name, :last_name]}})
+          td = ThoughtDate.where(id: thought_date.id)
+            .includes(:recipient).as_json(include: {
+              recipient: { only: [:first_name, :last_name]}
+            }
+          )
           thought_dates << td if thought_date.event_date.present?
         end
       end
