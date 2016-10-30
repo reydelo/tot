@@ -1,5 +1,7 @@
 let Sidebar = React.createClass({
   upcomingEvents: function() {
+    console.log(this.props.thoughtDates);
+
     return this.props.thoughtDates.map((thoughtDate) => {
       // TODO: .strftime("%b %d")
       return (
@@ -7,9 +9,10 @@ let Sidebar = React.createClass({
           <a href='#'>
             <div>
               <h5>{thoughtDate.event_date}</h5>
-              <h6>{thoughtDate.name}</h6>
+              <h6>{thoughtDate.recipient.first_name + ' ' + thoughtDate.recipient.last_name + '\'s'} {thoughtDate.name}</h6>
             </div>
           </a>
+          <button className='btn btn-red btn-xs'>Add Card</button>
         </div>
       );
     });
@@ -17,7 +20,7 @@ let Sidebar = React.createClass({
 
   noUpcomingEvents: function() {
     return(
-      <div>
+      <div className='no-thought-dates'>
         <p>You currently have no upcoming events.</p>
         <p>To have upcoming events, select a recipient, create a new Thought Date, and pick the perfect card!</p>
       </div>

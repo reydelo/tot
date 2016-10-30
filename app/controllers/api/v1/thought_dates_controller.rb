@@ -2,14 +2,15 @@ class Api::V1::ThoughtDatesController < Api::V1::BaseController
   def index
     if params[:recipient_id]
       recipient = Recipient.where(user_id: current_user.id, id: params[:recipient_id]).first
-      thought_dates = ThoughtDate.where(recipient_id: recipient.id) if recipient.present?
+      thought_dates = ThoughtDate.where(recipient_id: recipient.id).includes(:recipient).as_json(include: { recipient: { only: [:first_name, :last_name]}}) if recipient.present?
       respond_with thought_dates
     else
       recipients = Recipient.where(user_id: current_user.id).includes(:thought_dates)
       thought_dates = []
       recipients.each do |recip|
         recip.thought_dates.each do |thought_date|
-          thought_dates << thought_date if thought_date.event_date.present?
+          td = ThoughtDate.where(id: thought_date.id).includes(:recipient).as_json(include: { recipient: { only: [:first_name, :last_name]}})
+          thought_dates << td if thought_date.event_date.present?
         end
       end
       thought_dates = thought_dates.flatten
@@ -18,7 +19,7 @@ class Api::V1::ThoughtDatesController < Api::V1::BaseController
   end
 
   def show
-    respond_with ThoughtDate.find(params[:id])
+    respond_with ThoughtDate.where(id: params[:id]).includes(:recipient).as_json(include: { recipient: { only: [:first_name, :last_name]}})
   end
 
   def create
