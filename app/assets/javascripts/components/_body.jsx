@@ -36,10 +36,13 @@ let Body = React.createClass({
 
   render() {
     return(
-      <div>
-        <Recipients />
-        <NewThoughtDate handleSubmit={this.handleSubmit}/>
-        <AllThoughtDates thoughtDates={this.state.thoughtDates} handleDelete={this.handleDelete}/>
+      <div className='body-container'>
+        <div className='body-content'>
+          <Recipients />
+          <NewThoughtDate handleSubmit={this.handleSubmit}/>
+          <AllThoughtDates thoughtDates={this.state.thoughtDates} handleDelete={this.handleDelete}/>
+        </div>
+        <Sidebar thoughtDates={this.state.thoughtDates}/>
       </div>
     );
   }
