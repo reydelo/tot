@@ -1,0 +1,67 @@
+// sidebar --------------------------------------------------------
+
+.sidebar, .mobile-sidebar {
+  width: 30%;
+  height: 100vh;
+  overflow-y: auto;
+  border-left: solid 2px $pale-grey-two;
+  background-color: $pale-grey;
+  padding: 25px 0 0 25px;
+  h4 {
+    color: $dark-peach;
+    border-bottom: solid 1px $dark-peach;
+    font-size: 24px;
+    font-weight: 200;
+    padding: 15px 0;
+  }
+  #sidebar-events, #sidebar-recipients, #sidebar-notifications {
+    & > p {
+      margin-right: 25px;
+    }
+  }
+  .thought-date-list, .recipient-list {
+    border-bottom: solid 1px $greyish-brown;
+    padding: 10px 0;
+  }
+  #sidebar-events {
+    min-height: 30%;
+    margin-bottom: 25px;
+    .thought-date-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h5, h6 {
+        margin: 0;
+      }
+      h6 {
+        margin-bottom: 5px;
+      }
+      button {
+        background-color: $dark-peach;
+        border-color: $dark-peach;
+        margin-right: 25px;
+        margin-bottom: auto;
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+  .recipient-list {
+    div {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    h5, h6 {
+      margin: 0;
+    }
+    h6 {
+      margin-top: 5px;
+    }
+    p {
+      margin: 0;
+      padding-left: 5px;
+    }
+  }
+}
