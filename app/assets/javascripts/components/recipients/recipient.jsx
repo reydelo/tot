@@ -25,7 +25,7 @@ let Recipient = React.createClass({
     };
     $.ajax({
       method: 'PUT',
-      url: '/recipients/' + this.props.recipient.id,
+      url: 'api/v1/recipients/' + this.props.recipient.id,
       dataType: 'JSON',
       data: {
         recipient: data
@@ -43,7 +43,7 @@ let Recipient = React.createClass({
     e.preventDefault();
     $.ajax({
       method: 'DELETE',
-      url: '/recipients/' + this.props.recipient.id,
+      url: 'api/v1/recipients/' + this.props.recipient.id,
       dataType: 'JSON',
       success: function() {
         this.props.handleDeleteRecipient(this.props.recipient)
@@ -52,8 +52,6 @@ let Recipient = React.createClass({
   },
 
   recipientRow: function() {
-    console.log(this.props);
-
     return(
       <tr>
         <td>{this.props.recipient.first_name}</td>

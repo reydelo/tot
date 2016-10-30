@@ -26,7 +26,7 @@ let RecipientForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
     $.post(
-      '',
+      '/api/v1/recipients',
       {recipient: this.state},
       function(data) {
         this.props.handleNewRecipient(data);
