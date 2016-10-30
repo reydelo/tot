@@ -1,7 +1,8 @@
 let Recipient = React.createClass({
   getInitialState() {
     return {
-      edit: false
+      edit: false,
+      newThoughtDate: false
     };
   },
 
@@ -46,17 +47,27 @@ let Recipient = React.createClass({
       url: 'api/v1/recipients/' + this.props.recipient.id,
       dataType: 'JSON',
       success: function() {
-        this.props.handleDeleteRecipient(this.props.recipient)
+        this.props.handleDeleteRecipient(this.props.recipient);
       }.bind(this)
     });
   },
 
   thoughtDateButton() {
-    if (this.state.edit) {
+    if (this.state.edit || this.state.newThoughtDate) {
       return null;
     } else {
       return(
-        <button id='new-recipient-thoughtdate' className='btn btn-white'>Add New Thought Date</button>
+        <button id='new-recipient-thoughtdate' className='btn btn-white' onClick={this.handleNewThoughtDateToggle}>Add New Thought Date</button>
+      );
+    }
+  },
+
+  recipientActions() {
+    if (this.state.edit || this.state.newThoughtDate) {
+      return null;
+    } else {
+      return(
+        <a href='#' onClick={this.handleToggle} id='edit-recipient'>Edit Info</a>
       );
     }
   },
@@ -71,6 +82,26 @@ let Recipient = React.createClass({
     }
   },
 
+  handleNewThoughtDateToggle() {
+    this.setState({
+      newThoughtDate: !this.state.newThoughtDate
+    });
+  },
+
+  handleThoughtDateSubmit() {
+    this.props.handleThoughtDateSubmit();
+  },
+
+  newThoughtDate() {
+    if (this.state.newThoughtDate) {
+      return(
+        <ThoughtDateForm handleThoughtDateSubmit={this.props.handleThoughtDateSubmit} handleToggle={this.handleNewThoughtDateToggle} recipientId={this.props.recipient.id}/>
+      );
+    } else {
+      return null;
+    }
+  },
+
   recipientBlock() {
     // <a href='#' onClick={this.handleDelete} id='edit-recipient'>X</a>
     return(
@@ -78,10 +109,11 @@ let Recipient = React.createClass({
         <div className='inline-flex'>
           <h2>{this.props.recipient.first_name} {this.props.recipient.last_name}</h2>
           <p className='p-l-5'>({this.props.recipient.relationship})</p>
-          <a href='#' onClick={this.handleToggle} id='edit-recipient'>Edit Info</a>
+          {this.recipientActions()}
         </div>
         {this.recipientAddress()}
         {this.thoughtDateButton()}
+        {this.newThoughtDate()}
         {this.recipientForm()}
       </div>
     );
@@ -151,8 +183,8 @@ let Recipient = React.createClass({
 
           <div className='row'>
             <div className='button-group'>
-              <a id='submit-recip' onClick={this.handleEdit} className='btn btn-red'>Update</a>
-              <a onClick={this.handleToggle} className='btn btn-grey'>Cancel</a>
+              <button id='submit-recip' onClick={this.handleEdit} className='btn btn-red'>Update</button>
+              <button onClick={this.handleToggle} className='btn btn-grey'>Cancel</button>
             </div>
           </div>
 

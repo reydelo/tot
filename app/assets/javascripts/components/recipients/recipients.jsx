@@ -102,7 +102,7 @@ let Recipients = React.createClass({
         <div>
           {this.state.recipients.map(function(recipient) {
             return <Recipient key={recipient.id} recipient={recipient}
-              handleDeleteRecipient={this.deleteRecipient} handleEditRecipient={this.updateRecipient} />
+              handleDeleteRecipient={this.deleteRecipient} handleEditRecipient={this.updateRecipient} handleThoughtDateSubmit={this.props.handleThoughtDateSubmit}/>
           }.bind(this))}
         </div>
       </div>

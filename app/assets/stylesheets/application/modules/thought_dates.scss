@@ -1,0 +1,29 @@
+// Place all the styles related to the Recipients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.thought-date-form {
+  label {
+    color: $dark-peach;
+  }
+  input, select {
+    color: $dark-peach;
+    background-color: $off-white;
+    border-color: $dark-peach;
+    border-style: solid;
+    border-radius: 4px;
+    padding: 6px 12px;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+}
+
+#submit-thoughtdate {
+  margin-right: 15px;
+}
+
+@media only screen and (max-width : 510px) {
+  #submit-thoughtdate {
+    margin: 15px 0 5px !important;
+  }
+}

@@ -29,9 +29,8 @@ let Body = React.createClass({
     this.setState({thoughtDates: newState});
   },
 
-  handleSubmit(thoughtDate) {
-    let newState = this.state.thoughtDates.concat(thoughtDate);
-    this.setState({ thoughtDates: newState })
+  handleThoughtDateSubmit(thoughtDate) {
+    this.updateState();
   },
 
   handleDelete(id) {
@@ -57,7 +56,7 @@ let Body = React.createClass({
       );
     } else if (currentContent === 'recipients') {
       return(
-        <Recipients updateState={this.updateState}/>
+        <Recipients updateState={this.updateState} handleThoughtDateSubmit={this.handleThoughtDateSubmit}/>
       );
     } else if (currentContent === 'calendar') {
       return(
@@ -69,7 +68,6 @@ let Body = React.createClass({
   },
 
   render() {
-    // <NewThoughtDate handleSubmit={this.handleSubmit}/>
     // <AllThoughtDates thoughtDates={this.state.thoughtDates} handleDelete={this.handleDelete}/>
     return(
       <div className='body-container'>
