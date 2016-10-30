@@ -6,11 +6,9 @@
   margin: 25px 0;
   display: flex;
   flex-wrap: wrap-reverse;
-  button#add-new-recipient {
+  #add-new-recipient {
     margin-right: 25px;
   }
-}
-.add-search-recipient {
   input {
     flex-grow: 1;
     min-width: 285px;
@@ -37,12 +35,12 @@
       justify-content: flex-start;
       flex-direction: column;
       margin-bottom: 15px;
-      a {
+      .inline-flex a {
         margin-left: auto;
         margin-bottom: auto;
         margin-top: 15px;
       }
-      button#new-recipient-thoughtdate {
+      #new-recipient-thoughtdate {
         width: 175px;
       }
     }
@@ -60,9 +58,70 @@
     }
   }
 }
+#submit-recip {
+  margin-right: 15px;
+}
+#edit-recipient-form {
+  label {
+    color: $dark-peach;
+  }
+  input, select {
+    color: $dark-peach;
+    background-color: $off-white;
+    border-color: $dark-peach;
+    border-style: solid;
+    border-radius: 4px;
+    padding: 6px 12px;
+    &:focus {
+      outline-width: 0;
+    }
+  }
+}
+#recipient-form {
+  background-color: $dark-peach;
+  color: white;
+  border-radius: 4px;
+  padding: 25px 25px 25px 25px;
+  position: relative;
+  margin-bottom: 30px;
+  &:before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 25px;
+    border-style: solid;
+    border-width: 0 15px 15px;
+    border-color: $dark-peach transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+  }
+  h3 {
+    border-bottom: solid 1px white;
+    font-weight: 100;
+    padding: 15px 0;
+  }
+  #new-recipient-form {
+    label {
+      font-weight: 100;
+    }
+  }
+}
 
 @media only screen and (max-width : 510px) {
+  #add-new-recipient {
+    flex-grow: 1;
+    margin-right: 0 !important;
+    margin-top: 25px;
+  }
   #recipient-detail {
     margin: 30px 0 0 0;
+  }
+  #submit-recip {
+    width: 100% !important;
+    margin: 15px 0 5px !important;
+  }
+  #new-recipient-thoughtdate {
+    width: 100% !important;
   }
 }

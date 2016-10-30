@@ -1,0 +1,54 @@
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.btn {
+  font-family: 'Crete Round', serif;
+  font-weight: 100;
+}
+.btn-red {
+  background-color: $dark-peach;
+  border-color: $dark-peach;
+  color: $white;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: $dark-peach;
+    border-color: $dark-peach;
+  }
+}
+.btn-white {
+  background-color: $white;
+  color: $dark-peach;
+  border-color: $dark-peach;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background-color: $white;
+    border-color: $dark-peach;
+    color: $dark-peach;
+  }
+}
+.btn-grey {
+  background-color: $white;
+  color: $greyish-brown;
+  border-color: $greyish-brown;
+  &:focus {
+    outline: none;
+
+  }
+  &:hover {
+    background-color: $white;
+    border-color: $greyish-brown;
+    color: $greyish-brown;
+  }
+}
+@media only screen and (max-width : 510px) {
+  .button-group {
+    flex-direction: column;
+  }
+}

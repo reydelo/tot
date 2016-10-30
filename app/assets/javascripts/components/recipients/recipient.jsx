@@ -51,18 +51,28 @@ let Recipient = React.createClass({
     });
   },
 
+  thoughtDateButton() {
+    if (this.state.edit) {
+      return null;
+    } else {
+      return(
+        <button id='new-recipient-thoughtdate' className='btn btn-white'>Add New Thought Date</button>
+      );
+    }
+  },
+
   recipientRow: function() {
+    // <a href='#' onClick={this.handleDelete} id='edit-recipient'>X</a>
     return(
       <div id='recipient-header'>
         <div className='inline-flex'>
           <h2>{this.props.recipient.first_name} {this.props.recipient.last_name}</h2>
           <p className='p-l-5'>({this.props.recipient.relationship})</p>
           <a href='#' onClick={this.handleToggle} id='edit-recipient'>Edit Info</a>
-          <a href='#' onClick={this.handleDelete} id='edit-recipient'>X</a>
         </div>
         <p>{this.props.recipient.address}, {this.props.recipient.city}, {this.props.recipient.state}  {this.props.recipient.zip_code}</p>
+        {this.thoughtDateButton()}
         {this.recipientForm()}
-        <button id='new-recipient-thoughtdate' className='btn btn-white'>Add New Thought Date</button>
       </div>
     );
   },
@@ -70,7 +80,7 @@ let Recipient = React.createClass({
   recipientForm: function() {
     if (this.state.edit) {
       return(
-        <div id='edit-recipient-div'>
+        <form id="edit-recipient-form">
           <div className='row'>
             <div className='col-md-5'>
               <div className='form-group'>
@@ -131,15 +141,15 @@ let Recipient = React.createClass({
 
           <div className='row'>
             <div className='button-group'>
-              <a id='submit-edit-recip' onClick={this.handleEdit} className='btn btn-red'>Update</a>
-              <a id='cancel-edit-recip' onClick={this.handleToggle} className='btn btn-grey'>Cancel</a>
+              <a id='submit-recip' onClick={this.handleEdit} className='btn btn-red'>Update</a>
+              <a onClick={this.handleToggle} className='btn btn-grey'>Cancel</a>
             </div>
           </div>
 
-        </div>
+        </form>
       );
     } else {
-      return;
+      return null;
     }
   },
 

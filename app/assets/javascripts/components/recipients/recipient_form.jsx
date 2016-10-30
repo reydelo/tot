@@ -39,8 +39,8 @@ let RecipientForm = React.createClass({
   render: function() {
     if (this.props.edit) {
       return(
-        <form id='new-recipient-form' onSubmit={this.handleSubmit}>
-          <div id='edit-recipient-div'>
+        <div id='recipient-form'>
+          <form id='new-recipient-form' onSubmit={this.handleSubmit}>
             <div className='row'>
               <div className='col-md-5'>
                 <div className='form-group'>
@@ -101,13 +101,13 @@ let RecipientForm = React.createClass({
 
             <div className='row'>
               <div className='button-group'>
-                <input type='submit' id='submit-edit-recip' disabled={!this.valid()} className='btn btn-red'></input>
-                <a id='cancel-edit-recip' onClick={this.props.handleNewToggle} className='btn btn-grey'>Cancel</a>
+                <input type='submit' id='submit-recip' disabled={!this.valid()} className='btn btn-white'></input>
+                <a onClick={this.props.handleNewToggle} className='btn btn-grey'>Cancel</a>
               </div>
             </div>
 
-          </div>
-        </form>
+          </form>
+        </div>
       );
     } else {
       return null;
