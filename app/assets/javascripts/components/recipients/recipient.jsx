@@ -61,6 +61,16 @@ let Recipient = React.createClass({
     }
   },
 
+  recipientAddress() {
+    if (this.props.recipient.address) {
+      return(
+        <p>{this.props.recipient.address} {this.props.recipient.city}, {this.props.recipient.state}  {this.props.recipient.zip_code}</p>
+      );
+    } else {
+      return null;
+    }
+  },
+
   recipientRow: function() {
     // <a href='#' onClick={this.handleDelete} id='edit-recipient'>X</a>
     return(
@@ -70,7 +80,7 @@ let Recipient = React.createClass({
           <p className='p-l-5'>({this.props.recipient.relationship})</p>
           <a href='#' onClick={this.handleToggle} id='edit-recipient'>Edit Info</a>
         </div>
-        <p>{this.props.recipient.address}, {this.props.recipient.city}, {this.props.recipient.state}  {this.props.recipient.zip_code}</p>
+        {this.recipientAddress()}
         {this.thoughtDateButton()}
         {this.recipientForm()}
       </div>

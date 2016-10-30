@@ -18,6 +18,21 @@ let Recipients = React.createClass({
     });
   },
 
+  handleSearch(e) {
+    let self = this;
+    let query = e.target.value;
+    $.ajax({
+      url: '/api/v1/recipients/search',
+      type: 'GET',
+      data: {
+        query: query
+      },
+      success: function(response) {
+        self.setState({recipients: response});
+      }
+    });
+  },
+
   getDefaultProps: function() {
     return {
       recipients: []
@@ -59,7 +74,7 @@ let Recipients = React.createClass({
         <h1>My Recipients</h1>
         <div className='add-search-recipient'>
           <a id='add-new-recipient' className='btn btn-red' onClick={this.handleNewToggle}>Add New Recipient</a>
-          <input type='text' name='search-recipients' placeholder='search your recipients'></input>
+          <input type='text' name='search-recipients' placeholder='search your recipients' onChange={this.handleSearch}></input>
           </div>
           <RecipientForm handleNewRecipient={this.addRecipient} handleNewToggle={this.handleNewToggle} edit={this.state.edit}/>
           <div id='recipient-detail'>

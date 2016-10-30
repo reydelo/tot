@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :recipients, defaults: { format: 'json' } do
         resources :thought_dates, defaults: { format: 'json' }
+        collection do
+          get :search
+        end
       end
       resources :thought_dates, defaults: { format: 'json' }
     end

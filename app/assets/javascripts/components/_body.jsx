@@ -5,14 +5,14 @@ let Body = React.createClass({
       currentContent: 'home'
     }
   },
-  //
-  // componentDidMount() {
-  //   $.getJSON('/api/v1/thought_dates.json', (response) => {
-  //     this.setState({
-  //       thoughtDates: response
-  //     });
-  //   });
-  // },
+
+  componentDidMount() {
+    $.getJSON('/api/v1/thought_dates.json', (response) => {
+      this.setState({
+        thoughtDates: response
+      });
+    });
+  },
 
   removeThoughtDateClient(id) {
     let newState = this.state.thoughtDates.filter((thoughtDate) => {

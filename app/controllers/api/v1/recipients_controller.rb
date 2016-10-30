@@ -28,6 +28,12 @@ class Api::V1::RecipientsController < Api::V1::BaseController
     head :no_content
   end
 
+  def search
+    query = params[:query]
+    recipients = Recipient.where("lower(first_name || ' ' || last_name) LIKE ?", "%#{query}%".downcase)
+    respond_with recipients
+  end
+
   private
   def recipient_params
     params.require(:recipient).permit(:first_name, :last_name, :address, :city, :state, :zip_code, :relationship)
