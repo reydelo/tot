@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016070437) do
+ActiveRecord::Schema.define(version: 20161030003025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20161016070437) do
   end
 
   add_index "recipients", ["user_id"], name: "index_recipients_on_user_id", using: :btree
+
+  create_table "thought_dates", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "event_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

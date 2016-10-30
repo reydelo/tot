@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+10.times { ThoughtDate.create!(name: 'My Thoughtful Date', event_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"))}

@@ -1,10 +1,14 @@
 let Recipients = React.createClass({
-  getInitialState: function() {
-    console.log(this.props);
-
+  getInitialState() {
     return {
-      recipients: this.props.data
+      recipients: []
     };
+  },
+
+  componentDidMount() {
+    $.getJSON('/api/v1/recipients.json', (response) => {
+      this.setState({ recipients: response })
+    });
   },
 
   getDefaultProps: function() {

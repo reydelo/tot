@@ -30,6 +30,9 @@ gem 'devise', '~> 3.4'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
+# apply a respond_to rule to all the actions in a controller
+gem 'responders'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
