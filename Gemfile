@@ -8,6 +8,8 @@ gem 'pg', '~> 0.15'
 gem 'sass-rails', '~> 5.0'
 # Use bootstrap for responsive css framework
 gem 'bootstrap-sass', '~> 3.3.6'
+# Use font-awesome for icons
+gem 'font-awesome-sass'
 # Use React.js for reactive components
 gem 'react-rails'
 # Use Uglifier as compressor for JavaScript assets

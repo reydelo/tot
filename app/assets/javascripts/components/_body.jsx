@@ -1,15 +1,18 @@
 let Body = React.createClass({
   getInitialState() {
-    return { thoughtDates: [] }
+    return {
+      thoughtDates: [],
+      currentContent: 'home'
+    }
   },
-
-  componentDidMount() {
-    $.getJSON('/api/v1/thought_dates.json', (response) => {
-      this.setState({
-        thoughtDates: response
-      });
-    });
-  },
+  //
+  // componentDidMount() {
+  //   $.getJSON('/api/v1/thought_dates.json', (response) => {
+  //     this.setState({
+  //       thoughtDates: response
+  //     });
+  //   });
+  // },
 
   removeThoughtDateClient(id) {
     let newState = this.state.thoughtDates.filter((thoughtDate) => {
@@ -34,13 +37,37 @@ let Body = React.createClass({
     });
   },
 
+  handleContentChange(content) {
+    this.setState({currentContent: content});
+  },
+
+  currentContent() {
+    let currentContent = this.state.currentContent;
+    if (currentContent === 'home') {
+      return(
+        <Home />
+      );
+    } else if (currentContent === 'recipients') {
+      return(
+        <Recipients />
+      );
+    } else if (currentContent === 'calendar') {
+      return(
+        <Calendar />
+      );
+    } else {
+      return null;
+    }
+  },
+
   render() {
+    // <NewThoughtDate handleSubmit={this.handleSubmit}/>
+    // <AllThoughtDates thoughtDates={this.state.thoughtDates} handleDelete={this.handleDelete}/>
     return(
       <div className='body-container'>
         <div className='body-content'>
-          <Recipients />
-          <NewThoughtDate handleSubmit={this.handleSubmit}/>
-          <AllThoughtDates thoughtDates={this.state.thoughtDates} handleDelete={this.handleDelete}/>
+          <BodyNav currentContent={this.state.currentContent} handleContentChange={this.handleContentChange}/>
+          {this.currentContent()}
         </div>
         <Sidebar thoughtDates={this.state.thoughtDates}/>
       </div>

@@ -19,6 +19,26 @@ a {
     height: 100vh;
     overflow-y: auto;
     padding: 5px 25px 25px 25px;
+    #body-nav {
+      padding-top: 15px;
+      font-family: 'Crete Round', serif;
+      span {
+        &:not(:first-of-type) {
+          padding-left: 5px;
+        }
+        &:last-of-type:after {
+          content: "";
+        }
+        &:after {
+          content: "|";
+          padding-left: 5px;
+          color: black;
+        }
+        .active {
+          color: $dark-peach;
+        }
+      }
+    }
     h1 {
       color: $dark-peach;
       font-weight: 200;
