@@ -1,4 +1,8 @@
 let Home = React.createClass({
+  getInitialState() {
+    return {};
+  },
+
   render() {
     return(
       <div className='thought-steps'>

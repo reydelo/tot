@@ -1,5 +1,5 @@
 let RecipientForm = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       first_name: '',
       last_name: '',
@@ -8,22 +8,22 @@ let RecipientForm = React.createClass({
       city: '',
       state: '',
       zip_code: ''
-    }
+    };
   },
 
-  handleChange: function(e) {
+  handleChange(e) {
     let name = e.target.name;
     let obj = {};
     obj[name] = e.target.value;
     this.setState(obj);
   },
 
-  valid: function() {
+  valid() {
     // TODO: Check for type of state, not just presence
     return (this.state.first_name && this.state.relationship);
   },
 
-  handleSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     $.post(
       '/api/v1/recipients',
@@ -36,10 +36,11 @@ let RecipientForm = React.createClass({
     );
   },
 
-  render: function() {
+  render() {
     if (this.props.edit) {
       return(
         <div id='recipient-form'>
+          <h3>New Recipient</h3>
           <form id='new-recipient-form' onSubmit={this.handleSubmit}>
             <div className='row'>
               <div className='col-md-5'>

@@ -2,7 +2,8 @@ let Recipients = React.createClass({
   getInitialState() {
     return {
       recipients: [],
-      edit: false
+      edit: false,
+      query: ''
     };
   },
 
@@ -12,7 +13,7 @@ let Recipients = React.createClass({
     });
   },
 
-  handleNewToggle: function() {
+  handleNewToggle() {
     this.setState({
       edit: !this.state.edit
     });
@@ -21,22 +22,17 @@ let Recipients = React.createClass({
   handleSearch(e) {
     let self = this;
     let query = e.target.value;
+    this.setState({query: query});
     $.ajax({
       url: '/api/v1/recipients/search',
       type: 'GET',
       data: {
         query: query
       },
-      success: function(response) {
+      success(response) {
         self.setState({recipients: response});
       }
     });
-  },
-
-  getDefaultProps: function() {
-    return {
-      recipients: []
-    };
   },
 
   addRecipient: function(recipient) {
@@ -48,7 +44,7 @@ let Recipients = React.createClass({
     this.setState({recipients: recipients, edit: false});
   },
 
-  updateRecipient: function(recipient, data) {
+  updateRecipient(recipient, data) {
     let index = this.state.recipients.indexOf(recipient);
     let recipients = React.addons.update(
       this.state.recipients, {
@@ -56,9 +52,10 @@ let Recipients = React.createClass({
       }
     );
     this.replaceState({recipients: recipients});
+    this.props.updateState();
   },
 
-  deleteRecipient: function(recipient) {
+  deleteRecipient(recipient) {
     let index = this.state.recipients.indexOf(recipient);
     let recipients = React.addons.update(
       this.state.recipients, {
@@ -68,7 +65,51 @@ let Recipients = React.createClass({
     this.replaceState({recipients: recipients});
   },
 
-  render: function() {
+  hasRecipients() {
+    let myComponent;
+    if (this.state.recipients.length) {
+      myComponent = this.showRecipients();
+    } else {
+      if (this.state.query) {
+        myComponent = this.noSearchResults();
+      } else {
+        myComponent = this.noRecipients();
+      }
+    }
+    return myComponent;
+  },
+
+  noRecipients() {
+    return(
+      <div>
+        <p>You currently have no recipients.</p>
+        <p>To add new recipients, click Add New Recipient</p>
+      </div>
+    );
+  },
+
+  noSearchResults() {
+    return(
+      <div>
+        <p>No recipients found with the name {this.state.query}</p>
+      </div>
+    );
+  },
+
+  showRecipients() {
+    return(
+      <div id='recipient-detail'>
+        <div>
+          {this.state.recipients.map(function(recipient) {
+            return <Recipient key={recipient.id} recipient={recipient}
+              handleDeleteRecipient={this.deleteRecipient} handleEditRecipient={this.updateRecipient} />
+          }.bind(this))}
+        </div>
+      </div>
+    );
+  },
+
+  render() {
     return(
       <div>
         <h1>My Recipients</h1>
@@ -77,15 +118,8 @@ let Recipients = React.createClass({
           <input type='text' name='search-recipients' placeholder='search your recipients' onChange={this.handleSearch}></input>
           </div>
           <RecipientForm handleNewRecipient={this.addRecipient} handleNewToggle={this.handleNewToggle} edit={this.state.edit}/>
-          <div id='recipient-detail'>
-            <div>
-              {this.state.recipients.map(function(recipient) {
-                return <Recipient key={recipient.id} recipient={recipient}
-                  handleDeleteRecipient={this.deleteRecipient} handleEditRecipient={this.updateRecipient} />
-              }.bind(this))}
-            </div>
-          </div>
+          {this.hasRecipients()}
       </div>
-    )
+    );
   }
 });

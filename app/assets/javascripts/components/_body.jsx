@@ -14,6 +14,14 @@ let Body = React.createClass({
     });
   },
 
+  updateState() { // this could probably be optimized
+    $.getJSON('/api/v1/thought_dates.json', (response) => {
+      this.setState({
+        thoughtDates: response
+      });
+    });
+  },
+
   removeThoughtDateClient(id) {
     let newState = this.state.thoughtDates.filter((thoughtDate) => {
       return thoughtDate.id != id;
@@ -49,7 +57,7 @@ let Body = React.createClass({
       );
     } else if (currentContent === 'recipients') {
       return(
-        <Recipients />
+        <Recipients updateState={this.updateState}/>
       );
     } else if (currentContent === 'calendar') {
       return(

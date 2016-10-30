@@ -1,11 +1,11 @@
 let Recipient = React.createClass({
-  getInitialState: function() {
+  getInitialState() {
     return {
       edit: false
     };
   },
 
-  handleToggle: function(e) {
+  handleToggle(e) {
     e.preventDefault();
     this.setState({
       edit: !this.state.edit
@@ -71,7 +71,7 @@ let Recipient = React.createClass({
     }
   },
 
-  recipientRow: function() {
+  recipientBlock() {
     // <a href='#' onClick={this.handleDelete} id='edit-recipient'>X</a>
     return(
       <div id='recipient-header'>
@@ -87,7 +87,7 @@ let Recipient = React.createClass({
     );
   },
 
-  recipientForm: function() {
+  recipientForm() {
     if (this.state.edit) {
       return(
         <form id="edit-recipient-form">
@@ -163,7 +163,7 @@ let Recipient = React.createClass({
     }
   },
 
-  render: function() {
-    return this.recipientRow();
+  render() {
+    return this.recipientBlock();
   }
 })

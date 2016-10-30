@@ -1,4 +1,8 @@
 let Calendar = React.createClass({
+  getInitialState() {
+    return {};
+  },
+
   render() {
     return(
       <div id='calendar'>

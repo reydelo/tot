@@ -1,7 +1,5 @@
 let Sidebar = React.createClass({
   upcomingEvents: function() {
-    console.log(this.props.thoughtDates);
-
     return this.props.thoughtDates.map((thoughtDate) => {
       formattedDate = moment(thoughtDate.event_date).format("MMM DD");
       return (
