@@ -87,8 +87,7 @@ let RecipientForm = React.createClass({
               <div className='col-md-3 col-xs-6'>
                 <div className='form-group'>
                   <label htmlFor='state'>State</label>
-                  <input type='text' className='form-control' name='state'
-                    value={this.state.state} onChange={this.handleChange}></input>
+                  <UsStatesSelect state={this.state.state} handleChange={this.handleChange}/>
                 </div>
               </div>
               <div className='col-md-3 col-xs-6'>
