@@ -1,8 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-10.times { ThoughtDate.create!(name: 'My Thoughtful Date', event_date: DateTime.strptime("09/14/2009 8:00", "%m/%d/%Y %H:%M"))}
+#Event Types
+event_types = ["Birthday", "Mother's Day", "Father's Day", "Retirement", "Pregnancy", "Congratulations", "Engagement", "Sorry", "Valentine's Day", "Graduation", "Get Well Soon", "Thank You", "Anniversary"]
+event_types.each do |event_type|
+  EventType.create(name: event_type)
+end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         end
       end
       resources :thought_dates, defaults: { format: 'json' }
+      resources :event_types, defaults: { format: 'json'}
     end
   end
 

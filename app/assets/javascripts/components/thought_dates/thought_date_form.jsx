@@ -33,12 +33,10 @@ var ThoughtDateForm = React.createClass({
   },
 
   valid() {
-    // TODO: Check for type of state, not just presence
     return (this.state.recipient_id && this.state.name && this.state.event_date);
   },
 
   render() {
-    // <%= select_tag('thought_date[name]', options_for_select( EventType.all_names ), {prompt: 'select event type', className: 'form-control'} )  %>
     return (
       <div id='thought-date-form'>
         <form className='thought-date-form m-t-15' onSubmit={this.handleSubmit}>
@@ -48,7 +46,7 @@ var ThoughtDateForm = React.createClass({
             <div className='col-md-5'>
               <div className='form-group'>
                 <label htmlFor='name'>Event Type *</label>
-                <input type='text' className='form-control' name='name' value={this.state.name} onChange={this.handleChange}></input>
+                <EventTypesSelect name={this.state.name} handleChange={this.handleChange}/>
               </div>
             </div>
             <div className='col-md-4'>
