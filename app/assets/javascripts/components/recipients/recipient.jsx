@@ -67,7 +67,11 @@ let Recipient = React.createClass({
       return null;
     } else {
       return(
-        <a href='#' onClick={this.handleToggle} id='edit-recipient'>Edit Info</a>
+        <div className='recipient-actions'>
+          <span><a onClick={this.handleToggle} id='edit-recipient'>Edit Info</a></span>
+          <span><a onClick={this.handleDelete} id='edit-recipient'>Delete</a></span>
+        </div>
+
       );
     }
   },
@@ -103,7 +107,6 @@ let Recipient = React.createClass({
   },
 
   recipientBlock() {
-    // <a href='#' onClick={this.handleDelete} id='edit-recipient'>X</a>
     return(
       <div id='recipient-header'>
         <div className='inline-flex'>

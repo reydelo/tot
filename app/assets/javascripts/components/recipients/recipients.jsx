@@ -63,6 +63,7 @@ let Recipients = React.createClass({
       }
     );
     this.replaceState({recipients: recipients});
+    this.props.updateState();
   },
 
   hasRecipients() {

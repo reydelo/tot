@@ -35,10 +35,23 @@
       justify-content: flex-start;
       flex-direction: column;
       margin-bottom: 15px;
-      .inline-flex a {
+      .recipient-actions {
         margin-left: auto;
         margin-bottom: auto;
         margin-top: 15px;
+        span {
+          &:not(:first-of-type) {
+            padding-left: 5px;
+          }
+          &:last-of-type:after {
+            content: "";
+          }
+          &:after {
+            content: "|";
+            padding-left: 5px;
+            color: black;
+          }
+        }
       }
       #new-recipient-thoughtdate {
         width: 175px;
